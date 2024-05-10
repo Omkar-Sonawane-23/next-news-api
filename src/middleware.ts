@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getClientIp } from "./lib/utils";
 
+
 const isStaticPath = (path: string) => {
   return path.startsWith("/_next") || path.startsWith("/favicon.ico");
 };
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Allow from all origins
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 export async function middleware(request: NextRequest) {
   const requestPath = request.nextUrl.pathname;
