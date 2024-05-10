@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getClientIp } from "./lib/utils";
+import express from 'express';
+
+const app = express();
 
 
 const isStaticPath = (path: string) => {
